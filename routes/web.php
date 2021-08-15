@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\SearchController;
@@ -38,5 +39,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('orders/{order}/pay', [OrderController::class, 'pay'])->name('orders.pay');
 
     Route::post('webhooks', WebhooksController::class);
+
+    Route::get('storage-link', function(){
+        Artisan::call('storage:link');
+    });
 
 });
